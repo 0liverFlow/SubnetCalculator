@@ -53,7 +53,8 @@ if __name__ == '__main__':
                     flsm.display_network_info(display_subnet_header)
                     print("\n", end='')
         case 3:
-                print("Will be available soon :)")
+                print("This feature will be available soon :)")
+                print("In the meanwhile you can test first and second option")
        
                 
     

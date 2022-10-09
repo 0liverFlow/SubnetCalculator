@@ -5,7 +5,7 @@ the **broadcast address**, and the **number of machines** based on an ip address
 Hope you're gonna enjoy it  (^_^)
 
 ## How to install it
-- First you need a computer
+- First step
 
 
 

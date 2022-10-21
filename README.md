@@ -4,9 +4,5 @@
 the **broadcast address**, and the **number of machines** based on an ip address and its subnet mask.<br>
 Hope you're gonna enjoy it  (^_^)
 
-## How to install it
-- First step
-
-
 
 

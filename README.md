@@ -5,7 +5,6 @@
 - Determine the **network address**, the **broadcast address** and the **host id range** from an IP address and its respective subnet mask.<br>
 - Divise a given network in a specific number of sub-networks(**FLSM**).
 - Divise a given network into sub-networks using a number of users(**VLSM**: more convenient than FLSM).
-
 It is made up of 3 classes(GetNetHost.py, FLSM.py and VLSM.py).
 Feel free to read the READ.me file for a better understanding.
 

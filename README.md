@@ -8,6 +8,9 @@
 It is made up of 3 classes(GetNetHost.py, FLSM.py and VLSM.py).<br>
 Feel free to read the READ.me file for a better understanding.
 
+![Downloads](https://img.shields.io/github/downloads/0liverFlow/SubnetCalculator/total.svg?style=for-the-badge&logo=github)
+
+
 # Demo
 <img width="738" alt="image" src="https://user-images.githubusercontent.com/64969369/210280663-e6853b08-9472-4694-aae1-c3b1d47cbaed.png">
 

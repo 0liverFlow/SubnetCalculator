@@ -22,7 +22,7 @@ pip3 install -r requirements.txt
 ```
 Then you can run it
 ```
-SubnetCalculator.py [-h] [--network network/subnet] [--flsm N] [--vlsm N[,N]]
+SubnetCalculator.py [-h] --network network/subnet [--flsm N] [--vlsm N[,N]]
 ```
 
 

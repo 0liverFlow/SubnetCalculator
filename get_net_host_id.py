@@ -1,25 +1,43 @@
 import re
+
+from rich import print as printc
 from rich.table import Table
-from rich.console import Console
 
 
 class NetHostId():
+    """ 
+        This class allows you to determine the following addresses:
+        -network address (n_a)
+        -broadcast address (b_a) 
+        -first address (f_a)
+        -last_address (l_a)
+        ... 
+    """
+    
     def __init__(self, ip: str, subnet_mask: str):
-    #set the ip, default_subnet, ip_separator, n_a, f_a, b_a, l_a, number of hosts
+        """
+        Constructs all the necessary attributes for the NetHostId object.
+
+        Parameters
+        -----------
+        ip (str): The IP address specified by the user
+        subnet_mask (int): The subnet mask specified by the user
+        """
+
         self.ip = ip
-        self.default_subnet_mask = int(subnet_mask.replace('/', ''))
+        self.default_subnet_mask = subnet_mask
         self.ip_cidr = self.ip + '/' + str(self.default_subnet_mask)
         self.ip_separator = ''
         self.network_address = ''
         self.first_address = ''
         self.last_address = ''
         self.broadcast_address = ''
-        self.hosts = 2**(32-self.default_subnet_mask)-2
-
+        self.hosts = ''
+    
     @classmethod
     def warning(cls):
         print("""
-Before using this program, thanks in advance to respect the following rules:
+[i] Before using this program, thanks in advance to respect the following rules:
     1.This program works only for IPv4 addresses.
     2.The format of an IP address must be as follows : x.x.x.x or x-x-x-x
     with x between 0 and 255.
@@ -29,7 +47,7 @@ Before using this program, thanks in advance to respect the following rules:
     Hope you're gonna like subnet_calculator :)""")
     
     @staticmethod
-    def double_letter_converter(string):
+    def double_letter_format(string: str):
         letters = "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ"
         numbers = "𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡"
         string = string.strip().upper()
@@ -45,45 +63,57 @@ Before using this program, thanks in advance to respect the following rules:
                    double_string += letters[char_dec - 65] + ' '
         return double_string
     
-    def check_subnet_mask_validity(self):
-        #check subnet mask format
-        subnet_mask_regex = re.compile("^/\d{1,2}$")
-        default_subnet_mask = '/' + str(self.default_subnet_mask)
-        if re.search(subnet_mask_regex, default_subnet_mask) is None:
-            print("Error : The subnet mask format is incorrect.\nThe format must be : /xx with x between 1 and 31")
-            return
-        #check the subnet_mask' values
+    def check_subnet_mask_validity(self) -> bool:
+        """
+        Check if the subnet mask specified by the user is correct.
+        """
+        
+        # Check if subnet mask is an integer
+        try:
+            self.default_subnet_mask = int(self.default_subnet_mask)
+            self.hosts = 2**(32-self.default_subnet_mask)-2
+        except ValueError:
+            printc(f"[[red1 b]-[/red1 b]] Incorrect subnet mask type! Expected an integer!")
+            return False
+
+        # Checking subnet_mask's values
         if self.default_subnet_mask < 1 or self.default_subnet_mask > 31:
-            print("The subnet mask's value is incorrect.\nWarning : The subnet mask's value must be between 1 and 31")
-            return
+            printc(f"[[red1 b]-[/red1 b]] Incorrect subnet mask's value! Expected a value between 1 and 31!")
+            return False
         return True
 
     def check_ip_validity(self) -> bool:
-        #Check the ip address format.
-        ip_pattern = re.compile('^\d{1,3}[.-]\d{1,3}[-.]\d{1,3}[.-]\d{1,3}$')
+        """
+        Check if the ip specified by the user is correct.
+        """
+        
+        # Check ip address format.
+        ip_pattern = re.compile('^\d{1,3}([.-]\d{1,3}){3}$')
         if re.search(ip_pattern, self.ip) is None:
             print(self.ip)
-            print("|Error : Incorrect IP address format.\n|The format must be : x.x.x.x or x-x-x-x\n|Try again please.")
-            return
-        #Get the ip address's separator.
+            printc(f"[[red1 b]-[/red1 b]] Incorrect IP address! Expected the following formats : x.x.x.x or x-x-x-x")
+            return False
+        
+        # Get ip address's separator.
         if self.ip.find('.') != -1:
             self.ip_separator = '.'
         else:
             self.ip_separator = '-'
-        #Check if the ip address' values(bytes) are correct.
+        
+        # Check if the ip address' values (bytes) are correct.
         ip_bytes = [int(byte) for byte in re.split("[.-]", self.ip)]
         for byte in ip_bytes:
             if byte < 0 or byte > 255:
-                print("""
-                Incorrect IP address' values  found.
-                Knowing that a byte is a set of 8 bits, each byte should be between 0 and 255.
-                Please, check the specified ip values, then try again!
-                """)
-                return
+                printc("""[[red1 b]-[/red1 b]] Incorrect IP address' value found! Each byte should be between 0 and 255.""")
+                return False
         return True
     
     def display_network_info(self, header: str) -> None:
-        table = Table(title=f"{self.double_letter_converter(header)}", style="bold") 
+        """
+        Display a table containing a summary of the information related to the network cidr specified by the user
+        """
+
+        table = Table(title=f"{self.double_letter_format(header)}", style="bold") 
         table.add_column("CIDR Notation", justify="center")
         table.add_column("Network Address", justify="center")
         table.add_column("First Address", justify="center")  
@@ -91,15 +121,15 @@ Before using this program, thanks in advance to respect the following rules:
         table.add_column("Broadcast Address", justify="center")
         table.add_column("Hosts number", justify="center")
         table.add_row(f"{self.ip_cidr}", f"{self.network_address}", f"{self.first_address}", f"{self.last_address}", f"{self.broadcast_address}", f"{self.hosts}")
-        console = Console()
-        console.print(table)
+        printc(table)
 
-    def get_significant_ip_subnet_mask_byte(self, ip_address: list, net_index) -> tuple[list]:
+    def get_ip_subnet_mask_significant_byte(self, ip_address: list, net_index) -> tuple[list]:
         bits_list = [128, 192, 224, 240, 248, 252, 254]
         network_address = list()
         broadcast_address = list()
         subnet_mask_significant_byte = None
-        #Getting the subnet_mask significant byte
+
+        # Get the subnet_mask significant byte
         if self.default_subnet_mask < 8:
             subnet_mask_significant_byte = bits_list[self.default_subnet_mask-1]
         elif self.default_subnet_mask < 16: 
@@ -111,7 +141,8 @@ Before using this program, thanks in advance to respect the following rules:
         elif self.default_subnet_mask < 32: 
             subnet_mask = self.default_subnet_mask - 24
             subnet_mask_significant_byte = bits_list[subnet_mask-1]
-        #Getting the magical number
+
+        # Get the magical number
         magical_number = 256 - subnet_mask_significant_byte
         k = 0
         magical_number_multiple = magical_number * k
@@ -122,7 +153,8 @@ Before using this program, thanks in advance to respect the following rules:
             magical_number_multiple = magical_number * k
         magical_number_next_multiple = magical_number_multiple
         magical_number_multiple = magical_number_next_multiple - magical_number
-        #Getting network and broadcast address
+
+        # Get network and broadcast address
         for i in range(net_index+1):
             if i == net_index:
                 network_address.append(magical_number_multiple)
@@ -130,7 +162,8 @@ Before using this program, thanks in advance to respect the following rules:
             else:
                 network_address.append(int(ip_address[i]))
                 broadcast_address.append(int(ip_address[i]))
-       #Getting the first and the last ip address
+
+       # Get the first and the last ip address
         for i in range(net_index+1, len(ip_address)):
             network_address.append(0)
             broadcast_address.append(255)
@@ -141,7 +174,11 @@ Before using this program, thanks in advance to respect the following rules:
         return network_address, broadcast_address, first_address, last_address
 
     def get_network_broadcast_first_last_addresses(self) -> tuple[list]:
-        ip_address = re.split("[.-]", self.ip)
+        """"
+        Returns the network address, the first and last address and the broadcast address.
+        """
+
+        ip_address = re.split("[.-]", self.ip)  # ip_address is a list of bytes
         network_address = list()
         broadcast_address = list()
         net_index = self.default_subnet_mask // 8
@@ -156,9 +193,13 @@ Before using this program, thanks in advance to respect the following rules:
                     last_address = broadcast_address[:i] + [254]
             return network_address, broadcast_address, first_address, last_address
         else:
-            return self.get_significant_ip_subnet_mask_byte(ip_address, net_index)
+            return self.get_ip_subnet_mask_significant_byte(ip_address, net_index)
     
     def set_network_broadcast_first_last_addresses(self, network_address: list, broadcast_address: list, first_address: list, last_address: list) -> None:
+        """
+        Method used to convert the arguments specified in parameters into strings.
+        """
+
         n_a, b_a, f_a, l_a = network_address, broadcast_address, first_address, last_address
         n_a, b_a, f_a, l_a = [str(na) for na in n_a], [str(ba) for ba in b_a], [str(fa) for fa in f_a], [str(la) for la in l_a] 
         self.network_address = self.ip_separator.join(n_a)

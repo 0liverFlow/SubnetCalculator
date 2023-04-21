@@ -8,7 +8,7 @@
 SubnetCalculator is a python script which allows you to divide a network into subnetworks.<br>
 It performs three main tasks:
 - Determining the **network address**, the **broadcast address** and the **host id range** from a given IP address in CIDR notation.<br>
-- Dividing a given network into a specific number of sub-networks.(**FLSM**).
+- Dividing a given network into a specific number of sub-networks(**FLSM**).
 - Dividing a given network into sub-networks using a number of hosts for each subnet(**VLSM**).<br>
 ## Preview
 <img width="738" alt="image" src="https://user-images.githubusercontent.com/64969369/210280663-e6853b08-9472-4694-aae1-c3b1d47cbaed.png">

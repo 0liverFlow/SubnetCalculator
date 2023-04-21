@@ -14,7 +14,7 @@ It performs three main tasks:
 <img width="738" alt="image" src="https://user-images.githubusercontent.com/64969369/210280663-e6853b08-9472-4694-aae1-c3b1d47cbaed.png">
 
 ## Installation & Usage
-SubnetCalculator is a cross platform tool that you can works on **python 3.9 and above**.
+SubnetCalculator is a cross platform tool that works on **python 3.9 and above**.
 ```
 git clone https://github.com/0liverFlow/SubnetCalculator
 cd ./SubnetCalculator

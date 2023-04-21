@@ -11,7 +11,8 @@ It performs three main tasks:
 - Dividing a given network into a specific number of sub-networks(**FLSM**).
 - Dividing a given network into sub-networks using a number of hosts for each subnet(**VLSM**).<br>
 ## Preview
-<img width="738" alt="image" src="https://user-images.githubusercontent.com/64969369/210280663-e6853b08-9472-4694-aae1-c3b1d47cbaed.png">
+![image](https://user-images.githubusercontent.com/64969369/233727082-4ddb1706-d8f3-4043-8f65-136740c26c7e.png)
+
 
 ## Installation & Usage
 SubnetCalculator is a cross platform tool that works on **python 3.9 and above**.

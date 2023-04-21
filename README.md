@@ -2,7 +2,7 @@
 
 # SubnetCalculator
 [![Python](https://img.shields.io/badge/Python-%E2%89%A5%203.9-yellow.svg)](https://www.python.org/) 
-![License](https://img.shields.io/badge/license-GPLv3-red.svg) <img src="https://img.shields.io/badge/Maintained%3F-Yes-96c40f"> 
+![Version 1.0](http://img.shields.io/badge/version-v1.0-orange.svg) ![License](https://img.shields.io/badge/license-GPLv3-red.svg) <img src="https://img.shields.io/badge/Maintained%3F-Yes-96c40f"> 
  
  ## Purpose
 SubnetCalculator is a python script which allows you to divide a network into subnetworks.<br>

@@ -36,8 +36,8 @@ if __name__ == '__main__':
     
     # Check python version is acceptable
     user_python_version = '.'.join(sys.version.split()[0].split('.')[:2])
-    if float(user_python_version) <  3.9:
-        sys.exit(printc(f"[yellow1 b][!][/yellow1 b] This script must be executed at least with python 3.9\nYou are using python {user_python_version}"))
+    if float(user_python_version) <  3.10:
+        sys.exit(printc(f"[yellow1 b][!][/yellow1 b] This script must be executed at least with python 3.10\nYou are using python {user_python_version}"))
     try:
         ip_address, subnet_mask = args.network.split('/')
     except ValueError:

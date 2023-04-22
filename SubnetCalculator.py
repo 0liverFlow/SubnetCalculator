@@ -6,7 +6,6 @@ from rich import print as printc
 from get_net_host_id import NetHostId
 from flsm import FixedLengthSubnetMask
 from vlsm import VariableLengthSubnetMask
-from menu import menu
 
 
 if __name__ == '__main__':
@@ -15,7 +14,18 @@ if __name__ == '__main__':
     """
     
     NetHostId.warning()
-    menu()
+    print("""
+ ___   _      ___   _      ___   _      ___   _      ___   _
+[(_)] |=|    [(_)] |=|    [(_)] |=|    [(_)] |=|    [(_)] |=|
+ '-`  |_|     '-`  |_|     '-`  |_|     '-`  |_|     '-`  |_|
+    /PC1/        /PC2/       /PC3/       /PC4/       /PC5/     Author/0LI\/ERFL0W
+    |____________|__________|___________|___________|_______________|______________Subnet/Calculator
+                        |            |            |                 |
+                    ___  \_      ___  \_      ___  \_           version 1.0  
+                   [(_)] |=|    [(_)] |=|    [(_)] |=|
+                    '-`  |_|     '-`  |_|     '-`  |_|
+                    /PC6/        /PC7/        /PC8/
+    """)
     parser = argparse.ArgumentParser(prog='SubnetCalculator.py', description='Subnetting program coded with <3 by 0liverFlow', epilog='Ping me: 0liverFlow@proton.me')
     parser.add_argument('--network', metavar="CIDR", help='network address in CIDR notation (e.g. 192.168.1.0/24)', required=True)
     parser.add_argument('--flsm', type=int, metavar="N",  help='perform Fixed Length Subnetting with N subnets', nargs=1)

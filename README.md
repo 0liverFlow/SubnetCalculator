@@ -27,7 +27,7 @@ SubnetCalculator.py [-h] --network network/subnet [--flsm N] [--vlsm N[,N]]
 ```
 
 ## Docker
-You can also execute the program using the dockerfile. This can be simply done using the instructions below:
+You can also execute the program using the Dockerfile. This can be simply done using the instructions below:
 ```
 docker build -t subnet-calculator
 ```

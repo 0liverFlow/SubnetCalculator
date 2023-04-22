@@ -21,12 +21,18 @@ if __name__ == '__main__':
     parser.add_argument('--flsm', type=int, metavar="N",  help='perform Fixed Length Subnetting with N subnets', nargs=1)
     parser.add_argument('--vlsm', metavar="N", help='perform a Variable Length Subnet Masking using a list of N hosts per subnet', nargs="+")
     args = parser.parse_args()
+    
+    # Check python version is acceptable
+    user_python_version = '.'.join(sys.version.split()[0].split('.')[:2])
+    if float(user_python_version) <  3.9:
+        sys.exit(printc(f"[yellow1 b][!][/yellow1 b] This script must be executed at least with python 3.9\nYou are using python {user_python_version}"))
     try:
         ip_address, subnet_mask = args.network.split('/')
     except ValueError:
         printc(f"[[red1 b]-[/red1 b]] Incorrect Network CIDR specified! Expected Network/Subnet (e.g. 192.168.1.0/24)")
         sys.exit(1)
 
+    # Perform the subnetting type specified by the user
     if args.flsm:
         flsm = FixedLengthSubnetMask(ip_address, subnet_mask, args.flsm[0])
         if not(flsm.check_subnet_mask_validity() and flsm.check_ip_validity()):

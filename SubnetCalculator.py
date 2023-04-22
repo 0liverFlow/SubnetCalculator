@@ -12,8 +12,9 @@ if __name__ == '__main__':
     """
     Main function responsible for performing FLSM and VLSM.
     """
-    
+    # Warning message
     NetHostId.warning()
+    # The banner
     print("""
  ___   _      ___   _      ___   _      ___   _      ___   _
 [(_)] |=|    [(_)] |=|    [(_)] |=|    [(_)] |=|    [(_)] |=|

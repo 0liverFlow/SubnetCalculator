@@ -36,7 +36,7 @@ Once the image is built, you can run it
 docker run -it subnet-calculator --network 192.168.1.0/24 --flsm 2
 docker run -it subnet-calculator --network 192.168.1.0/24 --vlsm 20 40 80
 docker run -it subnet-calculator --network 192.168.1.0/24
-docker run -it subnet-calculator -h
+docker run -it subnet-calculator --help
 ```
 
 ## Preview

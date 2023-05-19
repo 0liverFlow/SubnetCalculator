@@ -34,18 +34,6 @@ class NetHostId():
         self.broadcast_address = ''
         self.hosts = ''
     
-    @classmethod
-    def warning(cls):
-        print("""
-[i] Before using this program, thanks in advance to respect the following rules:
-    1.This program works only for IPv4 addresses.
-    2.The format of an IP address must be as follows : x.x.x.x or x-x-x-x
-    with x between 0 and 255.
-    3.The ip address's separator must be a dot(.) or a dash(-)
-    4.The subnet mask must be given in CIDR notation /x with x between 1 and 31
-    Thank you very much for taking the information above into consideration.
-    Hope you're gonna like subnet_calculator :)""")
-    
     @staticmethod
     def double_letter_format(string: str):
         letters = "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ"

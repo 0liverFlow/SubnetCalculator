@@ -30,9 +30,6 @@ if __name__ == '__main__':
     parser.add_argument('--flsm', type=int, metavar="N",  help='perform Fixed Length Subnetting with N subnets', nargs=1)
     parser.add_argument('--vlsm', metavar="N", help='perform a Variable Length Subnet Masking using a list of N hosts per subnet', nargs="+")
     args = parser.parse_args()
-    if args.help:
-        # Warning message
-        NetHostId.warning()
     
     # Check python version is acceptable
     user_python_version = '.'.join(sys.version.split()[0].split('.')[:2])

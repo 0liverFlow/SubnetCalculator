@@ -13,6 +13,14 @@ It performs three main tasks:
 ## Preview
 ![image](https://user-images.githubusercontent.com/64969369/233727082-4ddb1706-d8f3-4043-8f65-136740c26c7e.png)
 
+## Important Notes
+Before using this script, thanks in advance to respect the following rules:
+- This program works only for IPv4 addresses.
+- The format of an IP address must be as follows : x.x.x.x or x-x-x-x (with x between 0 and 255).
+- The ip address's separator must be a dot(.) or a dash(-)
+- The subnet mask must be given in CIDR notation /x with x between 1 and 31
+- Thank you very much for taking the information above into consideration.
+Hope you're gonna like subnet/calculator :)
 
 ## Installation & Usage
 SubnetCalculator is a cross platform script that works with **python 3.10 and above**.
